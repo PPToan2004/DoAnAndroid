@@ -4,6 +4,8 @@ public class Truyen {
     int id;
     String name;
     String avatar;
+    int theloai_ID;
+    String theloai_Name;
 
     public int getTheloai_ID() {
         return theloai_ID;
@@ -13,9 +15,6 @@ public class Truyen {
         this.theloai_ID = theloai_ID;
     }
 
-    int theloai_ID;
-
-
     public String getTheloai_Name() {
         return theloai_Name;
     }
@@ -24,7 +23,7 @@ public class Truyen {
         this.theloai_Name = theloai_Name;
     }
 
-    String theloai_Name;
+
 
     public Truyen(int id, String name, String avatar) {
         this.id = id;

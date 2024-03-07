@@ -10,10 +10,12 @@ import java.io.InputStream;
 
 public class utils {
     public static final String DATABASE_NAME = "db-user";
-    public static final String TABLE_TRUYEN = "user";
+    public static final String TABLE_TRUYEN = "truyen";
     public static final String TABLE_THELOAI = "theloai";
+
     public static final  String COLUMN_THELOAI_ID = "theloai_id";
     public static  final String COLUMN_THELOAI_NAME = "theloai_name";
+
     public static final String COLUMN_TRUYEN_ID = "truyen_id";
     public static final String COLUMN_TRUYEN_NAME = "truyen_name";
     public static final String COLUMN_TRUYEN_AVATAR = "truyen_avatar";
