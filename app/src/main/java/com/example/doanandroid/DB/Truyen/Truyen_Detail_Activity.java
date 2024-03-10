@@ -119,11 +119,15 @@ Context context;
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(Truyen_Detail_Activity.this);
         alertDialog.setTitle("Cập nhật");
         LayoutInflater inflater = this.getLayoutInflater();
+
         View dialogView = inflater.inflate(R.layout.dialog_add_chapter, null);
         alertDialog.setView(dialogView);
         EditText edName = (EditText) dialogView.findViewById(R.id.edName);
         EditText edSTT = (EditText) dialogView.findViewById(R.id.edSTT);
         EditText edContent = (EditText) dialogView.findViewById(R.id.edContent);
+        edName.setText(chapter.getName());
+        edSTT.setText(String.valueOf(chapter.getStt()));
+        edContent.setText(chapter.getContent());
 
         Spinner snPart= dialogView.findViewById(R.id.chapterSpinner);
         ArrayList<Truyen> lstTruyen =  TruyenDataQuery.getAll(this);
@@ -133,7 +137,7 @@ Context context;
         snPart.setAdapter(truyenArrayAdapter);
 
         edName.setText(chapter.getName());
-        edSTT.setText(chapter.getStt());
+        edSTT.setText(chapter.getStt() + "");
         edContent.setText(chapter.getContent());
         snPart.setSelection(chapter.getId_truyen());
 
