@@ -12,6 +12,7 @@ public class utils {
     public static final String DATABASE_NAME = "db-user";
     public static final String TABLE_TRUYEN = "truyen";
     public static final String TABLE_THELOAI = "theloai";
+    public static final String TABLE_CHAPTER = "chapter";
 
     public static final  String COLUMN_THELOAI_ID = "theloai_id";
     public static  final String COLUMN_THELOAI_NAME = "theloai_name";
@@ -20,6 +21,12 @@ public class utils {
     public static final String COLUMN_TRUYEN_NAME = "truyen_name";
     public static final String COLUMN_TRUYEN_AVATAR = "truyen_avatar";
     public static final String COLUMN_THELOAI_TRUYEN_ID = "truyen_theloai_id";
+
+    public static final String COLUMN_CHAPTER_ID = "chapter_id";
+    public static final String COLUMN_CHAPTER_NAME = "chapter_name";
+    public static final String COLUMN_CHAPTER_CONTENT = "chapter_content";
+    public static final String COLUMN_CHAPTER_ID_TRUYEN = "chapter_id_truyen";
+    public static final String COLUMN_CHAPTER_STT = "chapter_stt";
 
     public static Bitmap convertToBitMapFromAssets(Context context, String nameImage)
     {
@@ -33,4 +40,5 @@ public class utils {
         }
         return  null;
     }
+
 }

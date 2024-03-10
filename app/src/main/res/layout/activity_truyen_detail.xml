@@ -1,9 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DB.Truyen.Truyen_Detail_Activity">
+    android:orientation="vertical"
+    tools:context=".DB.Truyen.Truyen_Detail_Activity"
+    android:padding="5dp"
+    android:layout_margin="5dp"
+    android:background="@color/white"
+    >
+    <ImageView
+        android:id="@+id/ivDeAvatar"
+        android:layout_width="match_parent"
+        android:layout_height="173dp"
+        app:srcCompat="@drawable/ic_launcher_background" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/tvDeName"
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:text="Name"
+        android:textSize="28sp"
+        android:gravity="center"
+        android:textColor="@color/black"
+        />
+
+    <TextView
+        android:id="@+id/tvDeType"
+        android:layout_width="match_parent"
+        android:layout_height="32dp"
+        android:textSize="24sp"
+        android:text="Type"
+        android:textColor="@color/black"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvDeChapterList"
+        android:layout_width="match_parent"
+        android:layout_height="366dp"
+        android:layout_marginHorizontal="18dp"
+        android:layout_marginBottom="10dp"
+        android:padding="4dp" />
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/fbAddChapter"
+        android:src="@drawable/baseline_add_24"
+        android:backgroundTint="#55D539"
+        android:tint="@color/white"
+        android:contentDescription="add User"
+        android:layout_marginBottom="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_gravity="right"
+        />
+</LinearLayout>

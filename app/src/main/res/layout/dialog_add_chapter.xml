@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <android.widget.Spinner
+        android:id="@+id/chapterSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:autofillHints="Chọn bộ truyện"
+        android:textSize="26sp" />
+
+    <EditText
+        android:id="@+id/edName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nhập tên chap"
+        android:textSize="20sp" />
+    <EditText
+        android:id="@+id/edSTT"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nhập thứ tự chap"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/edContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nhập đường dẫn nội dung"
+        android:textSize="20sp" />
+</LinearLayout>

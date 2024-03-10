@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +20,7 @@ import com.example.doanandroid.DB.Theloai.TheloaiDataQuery;
 import com.example.doanandroid.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class TruyenActivity extends AppCompatActivity implements TruyenAdapter.UserCallback {
@@ -142,6 +144,7 @@ public class TruyenActivity extends AppCompatActivity implements TruyenAdapter.U
         alertDialog.create();
         alertDialog.show();
     }
+
     void resetData() {
         lstUser.clear();
         lstUser.addAll(TruyenDataQuery.getAll(TruyenActivity.this));
@@ -150,7 +153,9 @@ public class TruyenActivity extends AppCompatActivity implements TruyenAdapter.U
 
     @Override
     public void ItemNameClicked(Truyen user, int position) {
-        return;
+        Intent i = new Intent(TruyenActivity.this, Truyen_Detail_Activity.class);
+        i.putExtra("TruyenDetail", (Serializable) lstUser.get(position));
+        startActivity(i);
     }
 
     @Override

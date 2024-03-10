@@ -1,6 +1,8 @@
 package com.example.doanandroid.DB.Truyen;
 
-public class Truyen {
+import java.io.Serializable;
+
+public class Truyen implements Serializable {
     int id;
     String name;
     String avatar;
