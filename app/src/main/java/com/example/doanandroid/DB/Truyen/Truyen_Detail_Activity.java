@@ -32,6 +32,8 @@ Context context;
     ArrayList<Chapter> lstChapter;
     ChapterAdapter chapterAdapter;
     FloatingActionButton fbAddChapter;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +41,6 @@ Context context;
         ImageView ivAvatarC = findViewById(R.id.ivDeAvatar);
         TextView tvUserDeNameC = findViewById(R.id.tvDeName);
         TextView tvUserDeTypeC = findViewById(R.id.tvDeType);
-
         Intent i = getIntent();
         Truyen truyen = (Truyen) i.getSerializableExtra("TruyenDetail");
         String name = truyen.getName();
@@ -55,7 +56,7 @@ Context context;
         fbAddChapter.setOnClickListener(view -> addChapterrDialog());
 
         lstChapter = new ArrayList<>();
-        lstChapter = ChapterDataQuery.getAll(this);
+        lstChapter = ChapterDataQuery.getAll(this, truyen.getId());
         chapterAdapter = new ChapterAdapter(lstChapter);
         chapterAdapter.setChapterCallback((ChapterAdapter.ChapterCallback) this);
 
@@ -169,8 +170,10 @@ Context context;
     }
 
     void resetData() {
+        Intent i = getIntent();
+        Truyen truyen = (Truyen) i.getSerializableExtra("TruyenDetail");
         lstChapter.clear();
-        lstChapter.addAll(ChapterDataQuery.getAll(Truyen_Detail_Activity.this));
+        lstChapter.addAll(ChapterDataQuery.getAll(Truyen_Detail_Activity.this, truyen.getId()));
         chapterAdapter.notifyDataSetChanged();
     }
 

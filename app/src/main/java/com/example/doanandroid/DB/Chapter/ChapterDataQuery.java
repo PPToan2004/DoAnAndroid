@@ -24,12 +24,14 @@ public class ChapterDataQuery {
         long rs = sqLiteDatabase.insert(utils.TABLE_CHAPTER, null, values);
         return (rs);
     }
-    public static ArrayList<Chapter> getAll(Context context)
+    public static ArrayList<Chapter> getAll(Context context, int idTruyen)
     {
         ArrayList<Chapter> lstChapter = new ArrayList<>();
         DBHelper userDBHelper = new DBHelper(context);
         SQLiteDatabase db = userDBHelper.getReadableDatabase();
-        Cursor cs = db.rawQuery("Select chap.*, tr.truyen_id as truyenName from chapter chap left join truyen tr on chap.chapter_id_truyen = tr.truyen_id",
+        Cursor cs = db.rawQuery("Select chap.*, tr.truyen_id as truyenName from chapter chap left join truyen tr" +
+                                     " on chap.chapter_id_truyen = tr.truyen_id where chap.chapter_id_truyen = " +
+                                       idTruyen + " and tr.truyen_id = " + idTruyen,
                 null);
         cs.moveToFirst();
         while (!cs.isAfterLast())
