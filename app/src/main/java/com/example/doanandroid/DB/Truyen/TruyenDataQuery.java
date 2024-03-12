@@ -45,6 +45,25 @@ public class TruyenDataQuery {
         db.close();
         return lstUser;
     }
+    public static Truyen getTruyen(Context context, int idTruyen)
+    {
+        DBHelper userDBHelper = new DBHelper(context);
+        SQLiteDatabase db = userDBHelper.getReadableDatabase();
+        Cursor cs = db.rawQuery("Select truyen.*, theloai.theloai_name as typeName from truyen left join theloai on truyen.truyen_theloai_id = theloai.theloai_id " +
+                        "and truyen.truyen_id = " + idTruyen,
+                null);
+        cs.moveToFirst();
+        int id = cs.getInt(0);
+        String name = cs.getString(1);
+        String avatar = cs.getString(2);
+        Truyen truyen = new Truyen(id, name, avatar);
+        truyen.theloai_ID = cs.getInt(3);
+        truyen.theloai_Name = cs.getString(4);
+        cs.moveToNext();
+        cs.close();
+        db.close();
+        return truyen;
+    }
     public static boolean delete(Context context, int id)
     {
         DBHelper userDBHelper = new DBHelper(context);

@@ -1,6 +1,8 @@
 package com.example.doanandroid.DB.Chapter;
 
-public class Chapter {
+import java.io.Serializable;
+
+public class Chapter implements Serializable {
     int id;
     int stt;
     String name;

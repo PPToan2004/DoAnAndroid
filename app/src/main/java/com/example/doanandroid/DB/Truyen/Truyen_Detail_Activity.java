@@ -20,10 +20,12 @@ import android.widget.Toast;
 import com.example.doanandroid.DB.Chapter.Chapter;
 import com.example.doanandroid.DB.Chapter.ChapterAdapter;
 import com.example.doanandroid.DB.Chapter.ChapterDataQuery;
+import com.example.doanandroid.DB.Chapter.ReadChapterActivity;
 import com.example.doanandroid.R;
 import com.example.doanandroid.utils;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Truyen_Detail_Activity extends AppCompatActivity implements ChapterAdapter.ChapterCallback {
@@ -178,8 +180,12 @@ Context context;
     }
 
     @Override
-    public void ItemNameClicked(Chapter chapter, int position) {
-        return;
+    public void ItemNameClicked(Chapter chapter, int position)
+    {
+        Intent i = new Intent(Truyen_Detail_Activity.this, ReadChapterActivity.class);
+        i.putExtra("ReadChapter", (Serializable) lstChapter.get(position));
+        startActivity(i);
+
     }
 
     @Override
