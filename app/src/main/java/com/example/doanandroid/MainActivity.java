@@ -31,7 +31,6 @@ public class MainActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         drawerLayout = findViewById(R.id.drawer_layout);
-        addControl();
         //Khoi tao menu
         initMenu();
     }
@@ -110,16 +109,7 @@ public class MainActivity extends AppCompatActivity{
         //Thu nho drawer
         drawerLayout.closeDrawer(GravityCompat.START);
     }
-    CardView QLcm;
-    private void addControl() {
-        QLcm=findViewById(R.id.QLcm);
-        QLcm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, TheLoaiActivity.class);
-                startActivity(intent);
-            }
-        });
-    }
+
+
 
 }
