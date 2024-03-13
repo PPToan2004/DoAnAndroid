@@ -56,10 +56,10 @@
             android:layout_height="wrap_content"
             android:text="Chương sau" />
     </LinearLayout>
-    <RelativeLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scrollbars="vertical"
+        android:fillViewport="true"
         >
         <TextView
             android:layout_marginHorizontal="10dp"
@@ -72,5 +72,6 @@
             android:textSize="16sp"
             android:textColor="@color/black"
             />
-    </RelativeLayout>
+    </ScrollView>
+
 </LinearLayout>
