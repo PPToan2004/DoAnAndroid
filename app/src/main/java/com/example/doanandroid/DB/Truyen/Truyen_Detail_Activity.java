@@ -93,7 +93,7 @@ Context context;
             Truyen itemTruyen = (Truyen) snPart.getSelectedItem();
             if (itemTruyen.id == 0)
             {
-                Toast.makeText(Truyen_Detail_Activity.this, "Vui lòng chọn lọai hoa", Toast.LENGTH_LONG).show();
+                Toast.makeText(Truyen_Detail_Activity.this, "Vui lòng chọn bộ truyện", Toast.LENGTH_LONG).show();
             } else
             if (name.isEmpty() || stt.isEmpty() || Integer.parseInt(stt) < 0 || content.isEmpty())
                 Toast.makeText(Truyen_Detail_Activity.this, "Nhập dữ liệu không hợp lệ", Toast.LENGTH_LONG).show();

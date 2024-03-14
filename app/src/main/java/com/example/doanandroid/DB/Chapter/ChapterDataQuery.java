@@ -49,6 +49,25 @@ public class ChapterDataQuery {
         db.close();
         return lstChapter;
     }
+    public static Chapter getChapter(Context context, int idTruyen, int STT)
+    {
+        DBHelper userDBHelper = new DBHelper(context);
+        SQLiteDatabase db = userDBHelper.getReadableDatabase();
+        Cursor cs = db.rawQuery("Select chap.*, tr.truyen_id as truyenName from chapter chap left join truyen tr" +
+                        " on chap.chapter_id_truyen = tr.truyen_id where chap.chapter_id_truyen = " +
+                        idTruyen + " and tr.truyen_id = " + idTruyen + " and chap.chapter_stt = " + STT,
+                null);
+        cs.moveToFirst();
+        int id = cs.getInt(0);
+        String name = cs.getString(1);
+        int stt = cs.getInt(2);
+        String content= cs.getString(3);
+        Chapter chapter = new Chapter(id, name, content, stt);
+        chapter.setId_truyen(cs.getInt(4));
+        cs.close();
+        db.close();
+        return chapter;
+    }
     public static boolean delete(Context context, int id)
     {
         DBHelper userDBHelper = new DBHelper(context);

@@ -15,11 +15,7 @@
         <activity
             android:name=".DB.Admin.AdminActivity"
             android:exported="true" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".fragment.fixTTCNActivity"
@@ -28,8 +24,19 @@
             android:name=".DB.Truyen.Truyen_Detail_Activity"
             android:exported="true" />
         <activity
+            android:name=".DB.Chapter.ReadChapterActivity"
+            android:exported="true">
+
+        </activity>
+        <activity
             android:name=".DB.Truyen.TruyenActivity"
-            android:exported="true"></activity>
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".DB.Theloai.TheLoaiActivity"
             android:exported="true" />

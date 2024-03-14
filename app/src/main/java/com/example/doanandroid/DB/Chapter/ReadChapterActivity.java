@@ -6,7 +6,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.doanandroid.DB.DBHelper;
 import com.example.doanandroid.DB.Truyen.Truyen;
@@ -18,7 +20,9 @@ import java.io.InputStream;
 
 public class ReadChapterActivity extends AppCompatActivity {
 TextView tvTruyenName, tvChapterNumber, tvContent;
+Button btnPreChapterC, btnNextChapterC;
 Context context;
+Chapter chapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,16 +30,15 @@ Context context;
         tvTruyenName = findViewById(R.id.tvTruyenNameR);
         tvChapterNumber = findViewById(R.id.tvChapterNumber);
         tvContent = findViewById(R.id.tvContent);
-        Intent i = getIntent();
-        Chapter chapter = (Chapter) i.getSerializableExtra("ReadChapter");
-        context = this;
-        Truyen truyen = TruyenDataQuery.getTruyen(context,chapter.id_truyen);
-        tvTruyenName.setText(truyen.getName());
-        tvChapterNumber.setText("Chapter " + chapter.stt);
+        btnNextChapterC = findViewById(R.id.btnNextChapter);
+        btnPreChapterC = findViewById(R.id.btnPreChapter);
 
-        String text = readContent(chapter);
-        tvContent.setText(text);
-        tvContent.setMovementMethod(new ScrollingMovementMethod());
+        Intent i = getIntent();
+        chapter = (Chapter) i.getSerializableExtra("ReadChapter");
+        context = this;
+        setChapter(chapter);
+        btnPreChapterC.setOnClickListener(view -> ReadPreChapter());
+        btnNextChapterC.setOnClickListener(view -> ReadNextChapter());
     }
 
     String readContent(Chapter chapter)
@@ -54,5 +57,44 @@ Context context;
             e.printStackTrace();
         }
         return text;
+    }
+
+    void setChapter(Chapter chapter)
+    {
+        Truyen truyen = TruyenDataQuery.getTruyen(context,chapter.id_truyen);
+        tvTruyenName.setText(truyen.getName());
+        tvChapterNumber.setText("Chapter " + chapter.stt);
+
+        String text = readContent(chapter);
+        tvContent.setText(text);
+        tvContent.setMovementMethod(new ScrollingMovementMethod());
+    }
+
+    void ReadPreChapter()
+    {
+        try {
+            int stt = chapter.getStt() - 1;
+            Truyen truyen = TruyenDataQuery.getTruyen(this, chapter.id_truyen);
+            chapter = ChapterDataQuery.getChapter(this, truyen.getId(), stt);
+            setChapter(chapter);
+        }
+        catch (Exception e)
+        {
+            Toast.makeText(ReadChapterActivity.this, "Không còn chapter", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    void ReadNextChapter()
+    {
+        try {
+            int stt = chapter.getStt() + 1;
+            Truyen truyen = TruyenDataQuery.getTruyen(this, chapter.id_truyen);
+            chapter = ChapterDataQuery.getChapter(this, truyen.getId(), stt);
+            setChapter(chapter);
+        }
+        catch (Exception e)
+        {
+            Toast.makeText(ReadChapterActivity.this, "Không còn chapter", Toast.LENGTH_LONG).show();
+        }
     }
 }
