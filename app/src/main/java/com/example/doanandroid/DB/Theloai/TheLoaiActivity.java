@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,6 +41,9 @@ public class TheLoaiActivity extends AppCompatActivity implements TheloaiAdapter
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         rcListCode.setAdapter(theloaiAdapter);
         rcListCode.setLayoutManager(linearLayoutManager);
+
+        ImageButton imbBackC = findViewById(R.id.imbBackL);
+        imbBackC.setOnClickListener(v->finish());
     }
     void addTheloaiDialog()
     {

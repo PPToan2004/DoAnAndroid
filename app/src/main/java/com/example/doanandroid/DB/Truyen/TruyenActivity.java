@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -46,6 +47,9 @@ public class TruyenActivity extends AppCompatActivity implements TruyenAdapter.U
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         rcListCode.setAdapter(userAdapter);
         rcListCode.setLayoutManager(linearLayoutManager);
+
+        ImageButton imbBackC = findViewById(R.id.imbBackT);
+        imbBackC.setOnClickListener(v->finish());
     }
     void addTruyenDialog() {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(TruyenActivity.this);
