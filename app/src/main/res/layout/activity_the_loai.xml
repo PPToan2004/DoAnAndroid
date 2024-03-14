@@ -5,24 +5,36 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".DB.Theloai.TheLoaiActivity"
-    android:background="@color/white"
-    >
-    <TextView
-        android:id="@+id/tvTypeHeader"
+    android:background="@color/white">
+    <LinearLayout
+        android:id="@+id/lnHeaderL"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Danh sách thể loại truyện"
-        android:textSize="30sp"
-        android:gravity="center"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent">
+        <ImageButton
+            android:id="@+id/imbBackL"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/baseline_arrow_back_ios_new_24" />
+        <TextView
+            android:id="@+id/tvTypeHeader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Danh sách thể loại truyện"
+            android:textSize="30sp"
+            android:gravity="center"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+    </LinearLayout>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvTypeList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constrainedHeight="true"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvTypeHeader"
+        app:layout_constraintTop_toBottomOf="@id/lnHeaderL"
         />
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fbTypeAdd"

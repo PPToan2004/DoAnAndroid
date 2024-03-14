@@ -13,18 +13,16 @@
         android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
         tools:targetApi="31">
         <activity
-            android:name=".DB.Admin.AdminActivity"
+            android:name=".fragment.fixTTCNActivity"
             android:exported="true" >
 
         </activity>
         <activity
-            android:name=".fragment.fixTTCNActivity"
-            android:exported="false" />
-        <activity
             android:name=".DB.Truyen.Truyen_Detail_Activity"
-            android:exported="true" />
-        <activity
-            android:name=".DB.Chapter.ReadChapterActivity"
+            android:exported="true">
+
+        </activity>
+        <activity android:name=".DB.Chapter.ReadChapterActivity"
             android:exported="true">
 
         </activity>
@@ -39,10 +37,13 @@
         </activity>
         <activity
             android:name=".DB.Theloai.TheLoaiActivity"
-            android:exported="true" />
+            android:exported="true">
+
+        </activity>
         <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="true" >
+
         </activity>
     </application>
 

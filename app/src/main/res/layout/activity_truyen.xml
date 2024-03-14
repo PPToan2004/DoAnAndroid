@@ -6,25 +6,34 @@
     android:layout_height="match_parent"
     android:padding="10dp"
     tools:context=".MainActivity"
-    android:background="@color/white"
-    >
-
+    android:background="@color/white">
+<LinearLayout
+    android:id="@+id/lnHeaderT"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintTop_toTopOf="parent">
+    <ImageButton
+        android:id="@+id/imbBackT"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/baseline_arrow_back_ios_new_24" />
     <TextView
         android:id="@+id/tvHeader"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Danh sách truyện"
         android:textSize="30sp"
-        android:gravity="center"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        android:gravity="center" />
+</LinearLayout>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constrainedHeight="true"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvHeader"
+        app:layout_constraintTop_toBottomOf="@id/lnHeaderT"
         />
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fbAdd"

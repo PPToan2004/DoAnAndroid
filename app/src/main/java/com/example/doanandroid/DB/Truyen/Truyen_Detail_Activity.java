@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -35,7 +36,6 @@ Context context;
     ChapterAdapter chapterAdapter;
     FloatingActionButton fbAddChapter;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +43,8 @@ Context context;
         ImageView ivAvatarC = findViewById(R.id.ivDeAvatar);
         TextView tvUserDeNameC = findViewById(R.id.tvDeName);
         TextView tvUserDeTypeC = findViewById(R.id.tvDeType);
+        ImageButton imbBackC = findViewById(R.id.imbBackTD);
+        imbBackC.setOnClickListener(v-> finish());
         Intent i = getIntent();
         Truyen truyen = (Truyen) i.getSerializableExtra("TruyenDetail");
         String name = truyen.getName();
@@ -65,6 +67,8 @@ Context context;
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         rcListCode.setAdapter(chapterAdapter);
         rcListCode.setLayoutManager(linearLayoutManager);
+
+
     }
     void addChapterrDialog()
     {

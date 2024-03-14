@@ -13,7 +13,12 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:padding="5dp">
-
+        <ImageButton
+            android:id="@+id/imbBackR"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/baseline_arrow_back_ios_new_24" />
         <TextView
             android:id="@+id/tvTruyenNameR"
             android:layout_width="wrap_content"
