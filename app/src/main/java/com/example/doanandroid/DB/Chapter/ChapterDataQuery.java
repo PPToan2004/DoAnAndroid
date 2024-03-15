@@ -68,6 +68,7 @@ public class ChapterDataQuery {
         db.close();
         return chapter;
     }
+
     public static boolean delete(Context context, int id)
     {
         DBHelper userDBHelper = new DBHelper(context);
