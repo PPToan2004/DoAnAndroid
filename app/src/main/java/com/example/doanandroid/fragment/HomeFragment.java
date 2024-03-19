@@ -27,8 +27,8 @@ public class HomeFragment extends Fragment {
     private String mParam2;
 
     public HomeFragment() {
-        // Required empty public constructor
     }
+        // Required empty public constructor
 
     /**
      * Use this factory method to create a new instance of

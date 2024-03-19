@@ -43,7 +43,13 @@
             android:textColor="@color/black"
             android:textSize="24sp" />
     </LinearLayout>
+<Spinner
+    android:id="@+id/readChapterSpinner"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:autofillHints="Chapter"
 
+    />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -69,6 +75,7 @@
             android:textSize="12sp"
             android:text="Chương sau" />
     </LinearLayout>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"

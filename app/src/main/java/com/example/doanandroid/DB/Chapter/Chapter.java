@@ -56,4 +56,9 @@ public class Chapter implements Serializable {
     public void setId_truyen(int id_truyen) {
         this.id_truyen = id_truyen;
     }
+
+    @Override
+    public String toString() {
+        return "Chapter " + stt + "-" + name ;
+    }
 }

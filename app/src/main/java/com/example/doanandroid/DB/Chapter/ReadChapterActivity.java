@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -29,7 +31,8 @@ TextView tvTruyenName, tvChapterNumber, tvContent, tvChapterNameC;
 Context context;
 Button btnPreChapterC, btnNextChapterC;
 Chapter chapter;
-
+Spinner snPart;
+ArrayAdapter<Chapter> truyenArrayAdapter;
 ImageButton imbBackC;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,20 +41,43 @@ ImageButton imbBackC;
         tvTruyenName = findViewById(R.id.tvTruyenNameR);
         tvChapterNumber = findViewById(R.id.tvChapterNumber);
         tvContent = findViewById(R.id.tvContent);
-        tvChapterNameC = findViewById(R.id.tvChapterName);
         btnNextChapterC = findViewById(R.id.btnNextChapter);
         btnPreChapterC = findViewById(R.id.btnPreChapter);
         Intent i = getIntent();
         chapter = (Chapter) i.getSerializableExtra("ReadChapter");
         context = this;
 
+        Truyen truyen = TruyenDataQuery.getTruyen(context,chapter.id_truyen);
+        snPart = findViewById(R.id.readChapterSpinner);
+        ArrayList<Chapter> lstChapter = ChapterDataQuery.getAll(this, truyen.getId());
+        truyenArrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, lstChapter);
+        truyenArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        snPart.setAdapter(truyenArrayAdapter);
+        snPart.setSelection(chapter.getStt() - 1);
+        snPart.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                chapter = (Chapter) snPart.getSelectedItem();
+                setChapter(chapter);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+               return;
+            }
+        });
         setChapter(chapter);
         btnPreChapterC.setOnClickListener(view -> ReadPreChapter());
         btnNextChapterC.setOnClickListener(view -> ReadNextChapter());
 
         imbBackC = findViewById(R.id.imbBackR);
         imbBackC.setOnClickListener(v->finish());
+    }
 
+    void readChapterOnSpinner()
+    {
+        chapter = (Chapter) snPart.getSelectedItem();
+        setChapter(chapter);
     }
 
     String readContent(Chapter chapter)
@@ -88,7 +114,8 @@ ImageButton imbBackC;
             int stt = chapter.getStt() - 1;
             Truyen truyen = TruyenDataQuery.getTruyen(this, chapter.id_truyen);
             chapter = ChapterDataQuery.getChapter(this, truyen.getId(), stt);
-            setChapter(chapter);
+            snPart.setSelection(stt - 1);
+
         }
         catch (Exception e)
         {
@@ -102,7 +129,8 @@ ImageButton imbBackC;
             int stt = chapter.getStt() + 1;
             Truyen truyen = TruyenDataQuery.getTruyen(this, chapter.id_truyen);
             chapter = ChapterDataQuery.getChapter(this, truyen.getId(), stt);
-            setChapter(chapter);
+            snPart.setSelection(stt - 1);
+
         }
         catch (Exception e)
         {
