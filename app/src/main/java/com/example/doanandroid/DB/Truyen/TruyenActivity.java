@@ -20,6 +20,8 @@ import com.example.doanandroid.DB.Theloai.TheLoai;
 import com.example.doanandroid.DB.Theloai.TheloaiDataQuery;
 import com.example.doanandroid.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -30,6 +32,9 @@ public class TruyenActivity extends AppCompatActivity implements TruyenAdapter.U
     ArrayList<Truyen> lstUser;
     TruyenAdapter userAdapter;
     FloatingActionButton fbAdd;
+    TextInputLayout textInputLayoutTruyen;
+    TextInputEditText edSearchTruyenC;
+    ImageButton ibSearchTruyenC;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +42,9 @@ public class TruyenActivity extends AppCompatActivity implements TruyenAdapter.U
         tvHeaderC = findViewById(R.id.tvHeader);
         rcListCode = findViewById(R.id.rvList);
         fbAdd = findViewById(R.id.fbAdd);
+        textInputLayoutTruyen = findViewById(R.id.textInputLayoutTruyen);
+        edSearchTruyenC = findViewById(R.id.edSearchTruyen);
+        ibSearchTruyenC = findViewById(R.id.ibSearchTruyen);
         fbAdd.setOnClickListener(view -> addTruyenDialog());
 
         lstUser = new ArrayList<>();
@@ -50,6 +58,23 @@ public class TruyenActivity extends AppCompatActivity implements TruyenAdapter.U
 
         ImageButton imbBackC = findViewById(R.id.imbBackT);
         imbBackC.setOnClickListener(v->finish());
+        ibSearchTruyenC.setOnClickListener(v -> SearchTruyen());
+    }
+    void SearchTruyen()
+    {
+        String truyenName = edSearchTruyenC.getText().toString().trim();
+        if (truyenName.isEmpty())
+            edSearchTruyenC.setError("Tên truyện để trống");
+        else
+        {
+            lstUser = TruyenDataQuery.getTruyenByName(this, truyenName);
+            userAdapter = new TruyenAdapter(lstUser);
+
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+            rcListCode.setAdapter(userAdapter);
+            rcListCode.setLayoutManager(linearLayoutManager);
+
+        }
     }
     void addTruyenDialog() {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(TruyenActivity.this);

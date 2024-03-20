@@ -26,14 +26,57 @@
         android:text="Danh sách truyện"
         android:textSize="30sp"
         android:gravity="center" />
+
 </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/searchBarLayout"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/lnHeaderT"
+
+        >
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayoutTruyen"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/lnHeaderT"
+            android:hint="Nhập tên truyện"
+            android:textColorHint="@color/black"
+            app:hintTextColor="@color/black"
+            app:counterTextColor="@color/black"
+            app:boxStrokeColor="@color/black"
+            android:layout_weight="4">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edSearchTruyen"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                />
+            
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <ImageButton
+            android:id="@+id/ibSearchTruyen"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/baseline_search_24"
+            android:layout_weight="1"
+            android:background="@color/white"
+            />
+        </LinearLayout>
+
     <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginTop="10dp"
         android:id="@+id/rvList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constrainedHeight="true"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/lnHeaderT"
+        app:layout_constraintTop_toBottomOf="@id/searchBarLayout"
         />
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fbAdd"

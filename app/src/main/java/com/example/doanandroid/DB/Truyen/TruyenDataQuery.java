@@ -45,6 +45,30 @@ public class TruyenDataQuery {
         db.close();
         return lstUser;
     }
+    public static ArrayList<Truyen> getTruyenByName(Context context, String truyenName)
+    {
+        ArrayList<Truyen> lstUser = new ArrayList<>();
+        DBHelper userDBHelper = new DBHelper(context);
+        SQLiteDatabase db = userDBHelper.getReadableDatabase();
+        Cursor cs = db.rawQuery("Select truyen.*, theloai.theloai_name as typeName from truyen left join theloai on truyen.truyen_theloai_id = theloai.theloai_id"
+                + " where truyen.truyen_name like " + "('%" + truyenName + "%')",
+                null);
+        cs.moveToFirst();
+        while (!cs.isAfterLast())
+        {
+            int id = cs.getInt(0);
+            String name = cs.getString(1);
+            String avatar = cs.getString(2);
+            Truyen user = new Truyen(id, name, avatar);
+            user.theloai_ID = cs.getInt(3);
+            user.theloai_Name = cs.getString(4);
+            lstUser.add(user);
+            cs.moveToNext();
+        }
+        cs.close();
+        db.close();
+        return lstUser;
+    }
     public static Truyen getTruyen(Context context, int idTruyen)
     {
         DBHelper userDBHelper = new DBHelper(context);
