@@ -41,16 +41,16 @@ public class LoginActivity extends AppCompatActivity {
                 }
                 else {
                     Boolean checkuserpass = db.checkgmailpass(gmail,pass);
-                    if(checkuserpass==true){
-                        Toast.makeText(LoginActivity.this,"Sign in successful",Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-
-                        startActivity(intent);
-                    }
-                    else if (gmail.equals("admin2004@gmail.com")||pass.equals("adminpassword")){
+                    if (gmail.equals("admin2004@gmail.com")&&pass.equals("adminpassword")){
                         Intent intent = new Intent(getApplicationContext(), AdminActivity.class);
                         startActivity(intent);
                         Toast.makeText(LoginActivity.this, "Welcome Admin", Toast.LENGTH_SHORT).show();
+                    }
+                   else  if(checkuserpass==true) {
+                        Toast.makeText(LoginActivity.this, "Sign in successful", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+
+                        startActivity(intent);
                     }
                     else {
                         Toast.makeText(LoginActivity.this,"Invalid Credentials",Toast.LENGTH_SHORT).show();
