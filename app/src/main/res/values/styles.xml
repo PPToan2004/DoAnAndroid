@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Phong cách cho Button sử dụng Widget.MaterialComponents.Button -->
+    <style name="Button.Material" parent="Widget.MaterialComponents.Button">
+        <item name="android:background">@drawable/custom_button</item>
+        <!-- Các thuộc tính khác nếu cần -->
+    </style>
+
+    <!-- Phong cách cho Button sử dụng Widget.AppCompat.Button -->
+    <style name="Button.AppCompat" parent="Widget.AppCompat.Button">
+        <item name="android:background">@drawable/custom_button</item>
+        <!-- Các thuộc tính khác nếu cần -->
+    </style>
+</resources>

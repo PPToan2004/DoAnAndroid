@@ -10,9 +10,18 @@ import java.io.InputStream;
 
 public class utils {
     public static final String DATABASE_NAME = "db-user";
+
+    public static final String TABLE_CUSTOMER = "CUSTOMER";
     public static final String TABLE_TRUYEN = "truyen";
     public static final String TABLE_THELOAI = "theloai";
     public static final String TABLE_CHAPTER = "chapter";
+
+    public static final  String COLUMN_CUSTOMER_ID = "CUSTOMER_ID";
+    public static final  String COLUMN_CUSTOMER_GMAIL = "CUSTOMER_GMAIL";
+    public static final  String COLUMN_CUSTOMER_PASSWORD = "CUSTOMER_PASSWORD";
+    public static final  String COLUMN_CUSTOMER_NAME = "CUSTOMER_NAME";
+    public static final  String COLUMN_CUSTOMER_ROLE = "CUSTOMER_ROLE";
+
 
     public static final  String COLUMN_THELOAI_ID = "theloai_id";
     public static  final String COLUMN_THELOAI_NAME = "theloai_name";

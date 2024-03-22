@@ -1,4 +1,4 @@
-package com.example.doanandroid.DB.Admin;
+package com.example.doanandroid.Admin;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
@@ -7,7 +7,6 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageButton;
 
 import com.example.doanandroid.DB.Theloai.TheLoaiActivity;
 import com.example.doanandroid.DB.Truyen.TruyenActivity;
