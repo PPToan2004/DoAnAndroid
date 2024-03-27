@@ -18,8 +18,7 @@
         <activity
             android:name=".User.RegisterActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            android:exported="true"
-            >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -37,7 +36,6 @@
         <activity
             android:name=".Admin.AdminActivity"
             android:exported="true">
-
             <!-- <intent-filter> -->
             <!-- <action android:name="android.intent.action.MAIN" /> -->
 
@@ -56,13 +54,10 @@
             android:exported="true" />
         <activity
             android:name=".DB.Theloai.TheLoaiActivity"
-            android:exported="true">
-
-        </activity>
+            android:exported="true" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
-
 <!--            <intent-filter>-->
 <!--                <action android:name="android.intent.action.MAIN" />-->
 

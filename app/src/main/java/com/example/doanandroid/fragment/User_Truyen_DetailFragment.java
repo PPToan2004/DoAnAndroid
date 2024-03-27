@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -75,7 +76,6 @@ public class User_Truyen_DetailFragment extends Fragment implements UserChapterA
         }
         Bundle bundle = this.getArguments();
         truyen = (Truyen) bundle.getSerializable("TruyenDetail");
-
     }
     RecyclerView rcListCode;
     ArrayList<Chapter> lstChapter;
@@ -89,7 +89,6 @@ public class User_Truyen_DetailFragment extends Fragment implements UserChapterA
         TextView tvUserDeNameC = view.findViewById(R.id.tvDeName);
         TextView tvUserDeTypeC = view.findViewById(R.id.tvDeType);
         ImageButton imbBackC = view.findViewById(R.id.imbBackTD);
-
         String name = truyen.getName();
         String type = "Thể loại: " + truyen.getTheloai_Name();
 
@@ -109,6 +108,15 @@ public class User_Truyen_DetailFragment extends Fragment implements UserChapterA
         rcListCode.setAdapter(chapterAdapter);
         rcListCode.setLayoutManager(linearLayoutManager);
 
+        // Gán sự kiện ClickListener cho ImageButton imbBackC
+        imbBackC.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Quay lại Fragment HomeFragment
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                fragmentManager.popBackStack(); // Quay lại Fragment trước đó (ở đây là HomeFragment)
+            }
+        });
         return view;
     }
 

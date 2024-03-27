@@ -6,6 +6,7 @@ import android.content.res.AssetManager;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
@@ -95,6 +96,7 @@ public class Read_Chapter_Fragment extends Fragment {
         tvContent = view.findViewById(R.id.tvContent);
         btnNextChapterC = view.findViewById(R.id.btnNextChapter);
         btnPreChapterC = view.findViewById(R.id.btnPreChapter);
+        imbBackC = view.findViewById(R.id.imbBackR);
 
         context = getActivity();
         Truyen truyen = TruyenDataQuery.getTruyen(context, chapter.getId_truyen());
@@ -120,8 +122,14 @@ public class Read_Chapter_Fragment extends Fragment {
         btnPreChapterC.setOnClickListener(v -> ReadPreChapter());
         btnNextChapterC.setOnClickListener(v -> ReadNextChapter());
 
-        imbBackC = view.findViewById(R.id.imbBackR);
-
+        imbBackC.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Quay lại Fragment User_Truyen_DetailFragment
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                fragmentManager.popBackStack(); // Quay lại Fragment trước đó (ở đây là User_Truyen_DetailFragment)
+            }
+        });
         return view;
     }
     void readChapterOnSpinner()
