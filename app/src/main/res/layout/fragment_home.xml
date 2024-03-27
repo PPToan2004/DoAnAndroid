@@ -3,15 +3,73 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.HomeFragment">
+    tools:context=".fragment.HomeFragment"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="10dp"
+    android:background="@color/white">
+    >
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
+        android:id="@+id/lnHeaderT"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:textSize="30sp"
-        android:text="Home Fragment"
-        android:textColor="#E91E63"/>
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:orientation="vertical">
+        <LinearLayout
+            android:id="@+id/searchBarLayout"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/lnHeaderT"
 
+            >
+            <ImageButton
+                android:id="@+id/imbBackT"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/baseline_arrow_back_ios_new_24" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayoutTruyen"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/lnHeaderT"
+                android:hint="Nhập tên truyện"
+                android:textColorHint="@color/black"
+                app:hintTextColor="@color/black"
+                app:counterTextColor="@color/black"
+                app:boxStrokeColor="@color/black"
+                android:layout_weight="4">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edSearchTruyen"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <ImageButton
+                android:id="@+id/ibSearchTruyen"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/baseline_search_24"
+                android:layout_weight="1"
+                android:background="@color/white"
+                />
+        </LinearLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_marginTop="10dp"
+            android:id="@+id/rvList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constrainedHeight="true"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/searchBarLayout"
+            />
+    </LinearLayout>
 </FrameLayout>

@@ -54,6 +54,8 @@ public class MainActivity extends AppCompatActivity{
         toggle.syncState();
 
         NavigationView navigationView = findViewById(R.id.nav_view);
+        loadFragment(new HomeFragment());
+        toolbar.setTitle("Trang chủ");
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -62,6 +64,7 @@ public class MainActivity extends AppCompatActivity{
                 if (itemId == R.id.nav_home) {
                     fmNew = new HomeFragment();
                     loadFragment(fmNew);
+                    toolbar.setTitle("Trang chủ");
                     return true;
                 } else if (itemId == R.id.nav_image) {
                     fmNew = new ImageFragment();

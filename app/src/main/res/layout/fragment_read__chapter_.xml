@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragment.Read_Chapter_Fragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:id="@+id/lnHeaderT"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="5dp">
+        <ImageButton
+            android:id="@+id/imbBackR"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/baseline_arrow_back_ios_new_24" />
+        <TextView
+            android:id="@+id/tvTruyenNameR"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="Truyen Name"
+            android:textColor="@color/black"
+            android:textSize="24sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text=" - "
+            android:textColor="@color/black"
+            android:textSize="24sp" />
+        <TextView
+            android:id="@+id/tvChapterNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="@string/chapter_number"
+            android:textColor="@color/black"
+            android:textSize="24sp" />
+
+    </LinearLayout>
+        <Spinner
+            android:id="@+id/readChapterSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints="Chapter"
+
+            />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="5dp">
+
+        <Button
+            android:id="@+id/btnPreChapter"
+            android:layout_width="138dp"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:text="Chương trước" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/btnNextChapter"
+            android:layout_width="138dp"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:text="Chương sau" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        >
+        <TextView
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginBottom="5dp"
+            android:id="@+id/tvContent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="left"
+            android:text="Content"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            />
+    </ScrollView>
+    </LinearLayout>
+</FrameLayout>

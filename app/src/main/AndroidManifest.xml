@@ -56,10 +56,13 @@
             android:exported="true" />
         <activity
             android:name=".DB.Theloai.TheLoaiActivity"
-            android:exported="true" />
+            android:exported="true">
+
+        </activity>
         <activity
             android:name=".MainActivity"
             android:exported="true">
+
 <!--            <intent-filter>-->
 <!--                <action android:name="android.intent.action.MAIN" />-->
 
