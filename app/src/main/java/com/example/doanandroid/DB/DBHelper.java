@@ -11,7 +11,7 @@ import com.example.doanandroid.utils;
 public class DBHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = utils.DATABASE_NAME;
-    private  static final int DATABASE_VERSION = 7;
+    private  static final int DATABASE_VERSION = 8;
 
     public DBHelper( Context context ) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);

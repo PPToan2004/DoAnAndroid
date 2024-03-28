@@ -5,6 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,6 +27,32 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
         addControls();
         addEvents();
+        checkEmail();
+    }
+
+    private void checkEmail() {
+        edtGmail.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            if(Patterns.EMAIL_ADDRESS.matcher(edtGmail.getText().toString()).matches()){
+                btnsignup.setEnabled(true);
+            }
+            else {
+                btnsignup.setEnabled(false);
+                edtGmail.setError("Invalid EmailAddress");
+            }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
     }
 
     private void addEvents() {

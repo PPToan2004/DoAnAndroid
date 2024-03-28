@@ -42,6 +42,7 @@
             android:layout_margin="@dimen/size10dp"
             android:drawableLeft="@drawable/ic_gmail"
             android:drawablePadding="@dimen/size10dp"
+            android:inputType="textEmailAddress"
             />
         <EditText
             android:id="@+id/edtPass"
@@ -97,6 +98,7 @@
                 android:layout_margin="@dimen/size10dp"
                 android:layout_weight="1"
                 style="@style/Button.AppCompat"
+                android:enabled="false"
             android:padding="@dimen/size10dp"
             android:text="@string/dongy" />
 
