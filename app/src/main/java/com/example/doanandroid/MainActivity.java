@@ -1,10 +1,10 @@
 package com.example.doanandroid;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.cardview.widget.CardView;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
@@ -12,11 +12,15 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 
-import com.example.doanandroid.DB.Theloai.TheLoaiActivity;
-import com.example.doanandroid.fragment.ContactFragment;
+import com.example.doanandroid.DB.DBHelper;
+import com.example.doanandroid.User.LoginActivity;
+import com.example.doanandroid.User.ProfileActivity;
+import com.example.doanandroid.User.RegisterActivity;
+import com.example.doanandroid.User.user;
 import com.example.doanandroid.fragment.FavoriteFragment;
 import com.example.doanandroid.fragment.HomeFragment;
 import com.example.doanandroid.fragment.ImageFragment;
@@ -25,14 +29,25 @@ import com.google.android.material.navigation.NavigationView;
 public class MainActivity extends AppCompatActivity{
     //test git
     private DrawerLayout drawerLayout;
+    DBHelper db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         drawerLayout = findViewById(R.id.drawer_layout);
+        //
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         //Khoi tao menu
         initMenu();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater mnu =getMenuInflater();
+        mnu.inflate(R.menu.main_menu,menu);
+        return true;
     }
 
     @Override
@@ -41,8 +56,11 @@ public class MainActivity extends AppCompatActivity{
         {
             finish();
             return true;
+        } else if (item.getItemId() == R.id.menu_contact) {
+            showActivity();
+            return true;
         }
-        return true;
+        return super.onOptionsItemSelected(item);
     }
 
     void initMenu() {
@@ -54,8 +72,6 @@ public class MainActivity extends AppCompatActivity{
         toggle.syncState();
 
         NavigationView navigationView = findViewById(R.id.nav_view);
-        loadFragment(new HomeFragment());
-        toolbar.setTitle("Trang chủ");
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -64,21 +80,22 @@ public class MainActivity extends AppCompatActivity{
                 if (itemId == R.id.nav_home) {
                     fmNew = new HomeFragment();
                     loadFragment(fmNew);
-                    toolbar.setTitle("Trang chủ");
                     return true;
                 } else if (itemId == R.id.nav_image) {
                     fmNew = new ImageFragment();
                     loadFragment(fmNew);
                     return true;
-                } else if (itemId == R.id.nav_contact) {
-                    fmNew = new ContactFragment();
-                    loadFragment(fmNew);
-                    return true;
+//                } else if (itemId == R.id.menu_contact) {
+//                    Intent intent = new Intent(MainActivity.this,ProfileActivity.class);
+//                    startActivity(intent);
+//                    return true;
                 } else if (itemId == R.id.nav_favorite) {
                     fmNew = new FavoriteFragment();
                     loadFragment(fmNew);
                     return true;
                 }
+
+
 //                switch (item.getItemId())
 //                {
 //                    case :
@@ -113,6 +130,11 @@ public class MainActivity extends AppCompatActivity{
         drawerLayout.closeDrawer(GravityCompat.START);
     }
 
-
-
+    void showActivity()
+    {
+        Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
+        user account = (user) getIntent().getSerializableExtra("account"); // Nhận đối tượng người dùng từ Intent
+        intent.putExtra("account", account); // Truyền đối tượng người dùng qua Intent
+        startActivity(intent);
+    }
 }

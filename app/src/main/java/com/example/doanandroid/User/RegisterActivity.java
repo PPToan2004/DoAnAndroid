@@ -3,7 +3,6 @@ package com.example.doanandroid.User;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -17,8 +16,8 @@ import com.example.doanandroid.DB.DBHelper;
 import com.example.doanandroid.R;
 
 public class RegisterActivity extends AppCompatActivity {
-    EditText edtGmail,edtPass,edtRePass,edtusername;
-    Button btnsignup,btnThoat;
+    EditText edtGmail,edtPass,edtRePass,edtUsername;
+    Button btnSignup, btnThoat;
     DBHelper db;
 
     @Override
@@ -33,63 +32,62 @@ public class RegisterActivity extends AppCompatActivity {
     private void checkEmail() {
         edtGmail.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-            if(Patterns.EMAIL_ADDRESS.matcher(edtGmail.getText().toString()).matches()){
-                btnsignup.setEnabled(true);
-            }
-            else {
-                btnsignup.setEnabled(false);
-                edtGmail.setError("Invalid EmailAddress");
-            }
+                if (s != null && Patterns.EMAIL_ADDRESS.matcher(s).matches()) {
+                    btnSignup.setEnabled(true);
+                    edtGmail.setError(null); // Clear error if any
+                } else {
+                    btnSignup.setEnabled(false);
+                    edtGmail.setError("Invalid Email Address");
+                }
             }
 
             @Override
-            public void afterTextChanged(Editable s) {
-
-            }
+            public void afterTextChanged(Editable s) {}
         });
     }
 
     private void addEvents() {
-        btnsignup.setOnClickListener(new View.OnClickListener() {
+        btnSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 String gmail = edtGmail.getText().toString();
                 String pass = edtPass.getText().toString();
                 String repass = edtRePass.getText().toString();
-                String user = edtusername.getText().toString();
+                String username = edtUsername.getText().toString();
 
-                    if (gmail.equals("")|| pass.equals("")|| repass.equals("")|| user.equals(""))
-                    {
-                        Toast.makeText(RegisterActivity.this, "Please enter all the fields", Toast.LENGTH_SHORT).show();
-                    }
-                    else {
-                        if(pass.equals(repass)){
-                            Boolean checkgmail = db.checkgmail(gmail);
-                            if (checkgmail==false) {
-                                Boolean insert = db.insertData(gmail,pass);
-                                if (insert==true){
-                                    Toast.makeText(RegisterActivity.this,"Registered seccessfull",Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-                                    startActivity(intent);
-                                }   else {
-                                    Toast.makeText(RegisterActivity.this,"Registered failed",Toast.LENGTH_SHORT).show();
-                                }
+                if (gmail.isEmpty() || pass.isEmpty() || repass.isEmpty() || username.isEmpty()) {
+                    Toast.makeText(RegisterActivity.this, "Please enter all fields", Toast.LENGTH_SHORT).show();
+                } else {
+                    db = new DBHelper(RegisterActivity.this);
+                    user account = new user();
+                    account.setGmail(gmail);
+                    account.setPass(pass);
+                    account.setName(username);
+
+                    user temp = db.checkGmail(gmail);
+                    if (temp == null) {
+                        if (pass.equals(repass)) {
+                            if (db.create(account)) {
+                                Toast.makeText(RegisterActivity.this, "Registration successful", Toast.LENGTH_SHORT).show();
+                                // Gửi dữ liệu người dùng sang hoạt động hồ sơ
+                                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+
+                                startActivity(intent);
+                                finish();  // Finish this activity to prevent going back to it with the back button
+                            } else {
+                                Toast.makeText(RegisterActivity.this, "Registration failed", Toast.LENGTH_SHORT).show();
                             }
-                            else {
-                                Toast.makeText(RegisterActivity.this,"Please check gmail",Toast.LENGTH_SHORT).show();
-                            }
-                        }else {
-                            Toast.makeText(RegisterActivity.this,"Please check pass",Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(RegisterActivity.this, "Passwords do not match", Toast.LENGTH_SHORT).show();
                         }
-
+                    } else {
+                        Toast.makeText(RegisterActivity.this, "Email already exists", Toast.LENGTH_SHORT).show();
                     }
+                }
             }
         });
 
@@ -104,13 +102,11 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void addControls() {
-        edtGmail= findViewById(R.id.edtGmail);
-        edtPass= findViewById(R.id.edtPass);
-        edtRePass= findViewById(R.id.edtRePass);
-        edtusername= findViewById(R.id.edtusername);
-        btnsignup= findViewById(R.id.btnsignup);
-        btnThoat= findViewById(R.id.btnThoat);
-        db = new DBHelper(this);
+        edtGmail = findViewById(R.id.edtGmail);
+        edtPass = findViewById(R.id.edtPass);
+        edtRePass = findViewById(R.id.edtRePass);
+        edtUsername = findViewById(R.id.edtusername);
+        btnSignup = findViewById(R.id.btnsignup);
+        btnThoat = findViewById(R.id.btnThoat);
     }
-
 }

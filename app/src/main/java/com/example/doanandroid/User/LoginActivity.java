@@ -32,24 +32,24 @@ public class LoginActivity extends AppCompatActivity {
         btnlogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                DBHelper db = new DBHelper(getApplicationContext());
                 String gmail= edtGmail1.getText().toString();
                 String pass = edtPass1.getText().toString();
-
+                user account = db.login(gmail,pass);
                 if(gmail.equals("")||pass.equals(""))
                 {
                     Toast.makeText(LoginActivity.this, "Please enter all the fields", Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    Boolean checkuserpass = db.checkgmailpass(gmail,pass);
-                    if (gmail.equals("admin2004@gmail.com")&&pass.equals("adminpassword")){
+                    if (gmail.equals("admin2004@gmail.com") && pass.equals("adminpassword")) {
                         Intent intent = new Intent(getApplicationContext(), AdminActivity.class);
                         startActivity(intent);
                         Toast.makeText(LoginActivity.this, "Welcome Admin", Toast.LENGTH_SHORT).show();
                     }
-                   else  if(checkuserpass==true) {
+                    else if (account != null) {
                         Toast.makeText(LoginActivity.this, "Sign in successful", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-
+                        Intent intent = new Intent(LoginActivity.this, MainActivity.class); // Chuyển đến ProfileActivity
+                        intent.putExtra("account", account);
                         startActivity(intent);
                     }
                     else {
@@ -74,7 +74,7 @@ public class LoginActivity extends AppCompatActivity {
         edtPass1 = findViewById(R.id.edtPass1);
         btnlogin = findViewById(R.id.btnlogin);
         btnResgister = findViewById(R.id.btnResgister);
-        db=new DBHelper(this);
+        db=new DBHelper(getApplicationContext());
     }
 
-    }
+}

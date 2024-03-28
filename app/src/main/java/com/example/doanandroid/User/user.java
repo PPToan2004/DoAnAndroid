@@ -6,6 +6,7 @@ public class user implements Serializable {
         private String gmail,pass,name;
         private int id;
 
+
     public user() {
     }
 
