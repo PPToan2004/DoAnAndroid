@@ -1,7 +1,6 @@
 package com.example.doanandroid;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -17,13 +16,11 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.example.doanandroid.DB.DBHelper;
-import com.example.doanandroid.User.LoginActivity;
 import com.example.doanandroid.User.ProfileActivity;
-import com.example.doanandroid.User.RegisterActivity;
 import com.example.doanandroid.User.user;
+import com.example.doanandroid.fragment.AboutFragment;
 import com.example.doanandroid.fragment.FavoriteFragment;
 import com.example.doanandroid.fragment.HomeFragment;
-import com.example.doanandroid.fragment.ImageFragment;
 import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity{
@@ -72,6 +69,8 @@ public class MainActivity extends AppCompatActivity{
         toggle.syncState();
 
         NavigationView navigationView = findViewById(R.id.nav_view);
+        loadFragment(new HomeFragment());
+        toolbar.setTitle("Trang chủ");
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -81,40 +80,15 @@ public class MainActivity extends AppCompatActivity{
                     fmNew = new HomeFragment();
                     loadFragment(fmNew);
                     return true;
-                } else if (itemId == R.id.nav_image) {
-                    fmNew = new ImageFragment();
+                } else if (itemId == R.id.nav_about) {
+                    fmNew = new AboutFragment();
                     loadFragment(fmNew);
                     return true;
-//                } else if (itemId == R.id.menu_contact) {
-//                    Intent intent = new Intent(MainActivity.this,ProfileActivity.class);
-//                    startActivity(intent);
-//                    return true;
                 } else if (itemId == R.id.nav_favorite) {
                     fmNew = new FavoriteFragment();
                     loadFragment(fmNew);
                     return true;
                 }
-
-
-//                switch (item.getItemId())
-//                {
-//                    case :
-//                        fmNew = new HomeFragment();
-//                        loadFragment(fmNew);
-//                        return true;
-//                    case :
-//                        fmNew = new ImageFragment();
-//                        loadFragment(fmNew);
-//                        return true;
-//                    case :
-//                        fmNew = new ContactFragment();
-//                        loadFragment(fmNew);
-//                        return true;
-//                    case :
-//                        fmNew = new FavoriteFragment();
-//                        loadFragment(fmNew);
-//                        return true;
-//                }
                 return true;
             }
         });
